@@ -1,4 +1,4 @@
-import DealsGallery from './components/DealsGalery/DealsGallery'
+import DealsGallery from './components/DealsGallery'
 
 function App() {
   return (

@@ -1,0 +1,81 @@
+/* src/components/DealCardSkeleton.module.css */
+
+.skeletonCard {
+  background-color: #1f2937;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid #374151;
+  display: flex;
+  flex-direction: column;
+}
+
+.skeletonImage {
+  width: 100%;
+  height: 10rem;
+  background-color: #374151;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonInfo {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.skeletonBadge {
+  width: 35%;
+  height: 1rem;
+  background-color: #374151;
+  border-radius: 0.25rem;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonTitle {
+  width: 85%;
+  height: 1.25rem;
+  background-color: #374151;
+  border-radius: 0.25rem;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonPriceRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 1rem;
+}
+
+.skeletonPrice {
+  width: 40%;
+  height: 1.5rem;
+  background-color: #374151;
+  border-radius: 0.25rem;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonDiscount {
+  width: 25%;
+  height: 1.5rem;
+  background-color: #374151;
+  border-radius: 0.25rem;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeletonBtn {
+  width: 100%;
+  height: 2.25rem;
+  background-color: #374151;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
