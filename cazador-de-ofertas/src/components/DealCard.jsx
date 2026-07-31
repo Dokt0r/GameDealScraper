@@ -1,12 +1,10 @@
-import { getHighResImage } from '../utils/imageHelpers';
 import styles from './DealCard.module.css';
 
 function DealCard({ deal, stores }) {
   const store = stores.find(s => s.storeID === deal.storeID);
-  const storeName = store ? store.storeName : 'Tienda Desconocida';
+  const storeName = store ? store.storeName : 'Desconocida';
   const discount = Math.round(100 - (deal.salePrice / deal.normalPrice) * 100);
 
-  // Función para determinar el color del badge de Metacritic
   const getMetacriticClass = (score) => {
     const num = Number(score);
     if (num >= 75) return styles.metacriticHigh;
@@ -16,44 +14,44 @@ function DealCard({ deal, stores }) {
 
   return (
     <div className={styles.card}>
-      <img 
-        src={getHighResImage(deal)} 
-        alt={deal.title} 
-        className={styles.image}
-        onError={(e) => { e.target.src = deal.thumb; }} 
-      />
-      <div className={styles.info}>
-        <div>
-          <span className={styles.storeBadge}>{storeName}</span>
-          <h2 className={styles.title} title={deal.title}>
-            {deal.title}
-          </h2>
+      {/* Contenedor adaptado a la miniatura de 120x45 */}
+      <div className={styles.thumbContainer}>
+        <img 
+          src={deal.thumb} 
+          alt={deal.title} 
+          className={styles.thumbImage}
+          onError={(e) => { 
+            e.target.src = 'https://placehold.co/120x45/18181b/a1a1aa?text=No+Img';
+          }} 
+        />
+      </div>
 
-          {/* BADGES DE PUNTUACIÓN */}
-          <div className={styles.ratingsRow}>
-            {Number(deal.metacriticScore) > 0 && (
-              <span 
-                className={`${styles.metacriticBadge} ${getMetacriticClass(deal.metacriticScore)}`}
-                title="Puntuación en Metacritic"
-              >
-                MC: {deal.metacriticScore}
-              </span>
-            )}
-            {Number(deal.steamRatingPercent) > 0 && (
-              <span className={styles.steamRatingBadge} title="Valoraciones positivas en Steam">
-                👍 {deal.steamRatingPercent}%
-              </span>
-            )}
-          </div>
+      <div className={styles.info}>
+        <div className={styles.headerRow}>
+          <h2 className={styles.title} title={deal.title}>{deal.title}</h2>
+          <span className={styles.storeBadge}>{storeName}</span>
+        </div>
+
+        <div className={styles.ratingsRow}>
+          {Number(deal.metacriticScore) > 0 && (
+            <span className={`${styles.badge} ${getMetacriticClass(deal.metacriticScore)}`}>
+              MC: {deal.metacriticScore}
+            </span>
+          )}
+          {Number(deal.steamRatingPercent) > 0 && (
+            <span className={`${styles.badge} ${styles.steamBadge}`}>
+              Steam: {deal.steamRatingPercent}%
+            </span>
+          )}
         </div>
         
-        <div className={styles.bottom}>
-          <div className={styles.priceRow}>
-            <div>
-              <p className={styles.normalPrice}>${deal.normalPrice}</p>
-              <p className={styles.salePrice}>${deal.salePrice}</p>
+        <div className={styles.bottomRow}>
+          <div className={styles.priceSection}>
+            <div className={styles.discountBadge}>-{discount}%</div>
+            <div className={styles.priceColumn}>
+              <span className={styles.normalPrice}>${deal.normalPrice}</span>
+              <span className={styles.salePrice}>${deal.salePrice}</span>
             </div>
-            <div className={styles.discount}>-{discount}%</div>
           </div>
           <a 
             href={`https://www.cheapshark.com/redirect?dealID=${deal.dealID}`} 

@@ -1,89 +1,125 @@
-.container {
+.pageWrapper {
   min-height: 100vh;
-  background-color: #111827;
-  padding: 2rem;
-  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #09090b; /* Fondo principal Zinc 950 */
+  color: #f4f4f5; /* Texto Zinc 100 */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
 }
 
-.content {
-  max-width: 80rem;
+/* HEADER */
+.header {
+  background-color: #18181b; /* Zinc 900 */
+  border-bottom: 1px solid #27272a; /* Zinc 800 */
+  padding: 1.5rem 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.headerContent {
+  max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.title {
-  font-size: 2.25rem;
-  font-weight: 700;
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logo {
+  font-size: 1.75rem;
+}
+
+.brand h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
   color: #ffffff;
-  margin-bottom: 0.5rem;
-  text-align: center;
 }
 
-.subtitle {
-  color: #9ca3af;
-  text-align: center;
+.tagline {
+  margin: 0;
+  color: #a1a1aa; /* Zinc 400 */
+  font-size: 0.875rem;
+  display: none; /* Oculto en móvil, visible en escritorio */
+}
+
+/* MAIN CONTAINER (Ancho máximo para diseño profesional) */
+.mainContainer {
+  flex-grow: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.controlsSection {
   margin-bottom: 2rem;
 }
 
+.gallerySection {
+  margin-bottom: 3rem;
+}
+
+/* GRID COMPACTO Y HORIZONTAL */
 .grid {
   display: grid;
-  grid-template-columns: repeat(1, minmax(0, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  gap: 1rem;
 }
 
-@media (min-width: 640px) {
-  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (min-width: 768px) {
-  .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
-@media (min-width: 1024px) {
-  .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-}
-
-.loadingContainer {
-  min-height: 40vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 2rem;
+  border-top: 1px solid #27272a;
+  color: #71717a; /* Zinc 500 */
+  font-size: 0.875rem;
 }
 
-.loadingText {
-  font-size: 1.25rem;
-  color: #ffffff;
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: .5; }
-}
-
-.loadMoreContainer {
+/* PAGINACIÓN */
+.pagination {
   display: flex;
   justify-content: center;
   margin-top: 3rem;
-  margin-bottom: 2rem;
 }
 
 .loadMoreBtn {
-  background-color: #1f2937;
-  color: #ffffff;
-  border: 1px solid #374151;
-  padding: 0.85rem 2.5rem;
-  font-size: 1rem;
+  background-color: #27272a;
+  color: #f4f4f5;
+  border: 1px solid #3f3f46;
+  padding: 0.75rem 2rem;
+  font-size: 0.9rem;
   font-weight: 600;
-  border-radius: 0.5rem;
+  border-radius: 9999px; /* Botón tipo píldora */
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .loadMoreBtn:hover:not(:disabled) {
-  background-color: #374151;
-  border-color: #4b5563;
-  transform: translateY(-2px);
+  background-color: #3f3f46;
+  border-color: #52525b;
 }
 
 .loadMoreBtn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+/* RESPONSIVO */
+@media (min-width: 768px) {
+  .tagline { display: block; }
+}
+
+@media (min-width: 1024px) {
+  .grid { 
+    grid-template-columns: repeat(2, minmax(0, 1fr)); 
+    gap: 1.25rem;
+  }
 }
